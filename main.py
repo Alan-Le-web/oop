@@ -36,7 +36,16 @@ class Student:
 )
     
     def __eq__(self, grade):
-        return (self.average_grade() == grade.average_grade())          
+        return (self.average_grade() == grade.average_grade())
+    
+    def average_grade_for_course(students, course_name):
+        total_grades = 0
+        total_students = 0
+        for student in students:
+            if course_name in student.grades:
+                total_grades += sum(student.grades[course_name])
+                total_students += len(student.grades[course_name])
+            return total_grades / total_students if total_students > 0 else 0          
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
@@ -66,6 +75,14 @@ class Lecturer(Mentor):
                 f"Фамилия: {self.surname} \n" 
                 f"Средняя оценка за лекции: {self.average_grade():.2f}"
 )
+    def average_grade_for_course(lecturers, course_name):
+        total_grades = 0
+        total_lecturers = 0
+        for lecturer in lecturers:
+            if course_name in lecturer.grades:
+                total_grades += sum(lecturer.grades[course_name])
+                total_lecturers += len(lecturer.grades[course_name])
+            return total_grades / total_lecturers if total_lecturers > 0 else 0     
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
@@ -140,4 +157,13 @@ else:
     print("Студенты,", student1.name, "и", student2.name, "- имеют различные средние оценки")
 print("------------------------")
 
+students = [student1, student2]
+lecturers = [lector1, lector2]
+course_name = 'Python'
 
+average_kurs_grade_s = Student.average_grade_for_course(students, course_name)
+print(f"Средняя оценка за домашние задания по курсу: '{course_name}': {average_kurs_grade_s:.2f}")
+
+average_kurs_grade_l = Lecturer.average_grade_for_course(lecturers, course_name)
+print(f"Средняя оценка за лекции по курсу: '{course_name}' {average_kurs_grade_l:.2f}")
+print("------------------------")
