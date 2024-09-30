@@ -45,7 +45,8 @@ class Student:
             if course_name in student.grades:
                 total_grades += sum(student.grades[course_name])
                 total_students += len(student.grades[course_name])
-            return total_grades / total_students if total_students > 0 else 0          
+        total_average_grades = total_grades / total_students if total_students > 0 else 0
+        return total_average_grades        
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
@@ -82,7 +83,8 @@ class Lecturer(Mentor):
             if course_name in lecturer.grades:
                 total_grades += sum(lecturer.grades[course_name])
                 total_lecturers += len(lecturer.grades[course_name])
-            return total_grades / total_lecturers if total_lecturers > 0 else 0     
+        total_average_grades = total_grades / total_lecturers if total_lecturers > 0 else 0
+        return total_average_grades    
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
@@ -125,13 +127,13 @@ student2.rate_lec(lector2, 'Python', 10)
 student2.rate_lec(lector2, 'Python', 5)
 student2.rate_lec(lector2, 'Python', 10)
  
-reviewer1.rate_hw(student1, 'Python', 3)
+reviewer1.rate_hw(student1, 'Python', 10)
 reviewer1.rate_hw(student1, 'Python', 10)
 reviewer1.rate_hw(student1, 'Python', 10)
  
-reviewer2.rate_hw(student2, 'Python', 2)
-reviewer2.rate_hw(student2, 'Python', 10)
-reviewer2.rate_hw(student2, 'Python', 4) 
+reviewer2.rate_hw(student2, 'Python', 9)
+reviewer2.rate_hw(student2, 'Python', 9)
+reviewer2.rate_hw(student2, 'Python', 9) 
 
 print(student1)
 print("------------------------")
